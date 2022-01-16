@@ -1,12 +1,11 @@
 :root {
   --color-tan: rgb(241, 240, 240);
-  /* font-family: 'Megrim', cursive; */
-  /* font-family: 'Roboto', sans-serif; */
-  /* font-family: 'Share', cursive;   */
+  --color-white: white;
 }
 
 .App {
-  font-family: 'Roboto', sans-serif; 
+  font-family: 'Share', cursive, sans-serif;
+  background-color: var(--color-white);
 }
 
 nav {
@@ -16,6 +15,9 @@ nav {
   font-family: 'Bungee Hairline', 'Roboto', sans-serif;
   font-weight: bold;
   position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: inherit;
 }
 
 /* https://www.w3schools.com/colors/colors_gradient.asp */
@@ -23,10 +25,41 @@ nav i {
   background: linear-gradient(to bottom right, #33ccff 0%, #ff99cc 100%);
 }
 
+.images {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin: 1em;
+}
+
+.ImageTile {
+  height: 400px;
+  width: 300px;
+  background-color: var(--color-tan);
+  text-align: center;
+  height: fit-content;
+}
+
+.title {
+  font-family: 'Share', cursive;
+  font-weight: bold;
+}
+
+.date {
+  font-family: 'Bungee Hairline', 'Roboto', sans-serif;
+  font-weight: bold;
+}
+
+.explanation {
+  display: none;
+}
+
+.ImageTile img {
+  height: 300px;
+  width: 300px;
+}
+
 footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: var(--color-tan);
 }
