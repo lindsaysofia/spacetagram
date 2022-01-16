@@ -4,14 +4,16 @@ import ImageTile from './ImageTile';
 import config from './config';
 
 function App() {
+  const today = (new Date()).toLocaleDateString('en-CA');
+  //start calendar 15 days from current date
   let initialStartDate = new Date();
-  initialStartDate.setDate(initialStartDate.getDate() - 10);
-  const [startDate, setStartDate] = useState(initialStartDate.toLocaleDateString('en-CA'));
-  const [endDate, setEndDate] = useState((new Date()).toLocaleDateString('en-CA'));
+  initialStartDate.setDate(initialStartDate.getDate() - 15);
+  initialStartDate = initialStartDate.toLocaleDateString('en-CA');
+  const [dates, setDates] = useState([initialStartDate, today]);
   const [images, setImages] = useState([]);
 
   async function getImages() {
-    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${config.API_KEY}&start_date=${startDate}&end_date=${endDate}`);
+    const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${config.API_KEY}&start_date=${dates[0]}&end_date=${dates[1]}`);
     const data = await response.json();
     // if only one item is returned, data is an object. If two or more items, data is an array.
     const imagesArray = [].concat(data);
@@ -20,15 +22,26 @@ function App() {
 
   useEffect(() => {
     getImages();
-  }, []);
+  }, [dates]);
 
-  const handleStartDateChange = () => {
-    console.log(' start change');
-  }
+  const handleStartDateChange = (e) => {
+    const newStartDate = e.target.value;
+    if (newStartDate > initialStartDate || newStartDate < '1995-06-16') {
+      return;
+    }
+    let newEndDate = new Date(newStartDate);
+    newEndDate.setDate(newEndDate.getDate() + 15);
+    setDates([newStartDate, newEndDate.toLocaleDateString('en-CA')]);
+  };
 
-  const handleEndDateChange = () => {
-    console.log('end change');
-  }
+  const toggleLike = (e) => {
+    if (e.target !== this) {
+      if (e.target.textContent === '') {
+        e.target = e.target.parentNode;
+      }
+    }
+    e.target.innerHTML = e.target.textContent === ' like' ? '<i class="fas fa-heart"></i> unlike':'<i class="far fa-heart"></i> like';
+  };
 
   return (
     <div className="App">
@@ -37,11 +50,11 @@ function App() {
         Spacetagram
       </nav>
       <main>
-        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={startDate} onChange={handleStartDateChange}/> to <input type="date" value={endDate} onChange={handleEndDateChange}/></p>
+        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={dates[0]} onChange={handleStartDateChange}/> to {(new Date(dates[1])).toDateString()}</p>
         <div className="images">
           {images.map((image, index) => {
             return (
-              <ImageTile key={index} image={image} />
+              <ImageTile key={index} image={image} toggleLike={toggleLike} />
             );
           })}
         </div>

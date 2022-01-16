@@ -5,6 +5,7 @@ function ImageTile(props) {
     date,
     explanation
   } = props.image;
+  const { toggleLike } = props;
   return (
     <div className="ImageTile">
       <figure>
@@ -14,14 +15,7 @@ function ImageTile(props) {
         </figcaption>
       </figure>
       <div className="description">
-        <button className="like" onClick={(e) => {
-            if (e.target !== this) {
-              if (e.target.textContent === '') {
-                e.target = e.target.parentNode;
-              }
-            }
-            e.target.innerHTML = e.target.textContent === ' like' ? '<i class="fas fa-heart"></i> unlike':'<i class="far fa-heart"></i> like';
-          }}><i className="far fa-heart"></i> like</button>
+        <button className="like" onClick={toggleLike}><i className="far fa-heart"></i> like</button>
         <h2 className="title">{title}</h2>
         <p className="date">{(new Date(date)).toDateString()}</p>
       </div>
