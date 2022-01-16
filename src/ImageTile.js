@@ -10,7 +10,7 @@ function ImageTile(props) {
       <img src={url} alt={title}/>
       <h2 className="title">{title}</h2>
       <p className="date">{(new Date(date)).toDateString()}</p>
-      <div class="overlay">
+      <div className="overlay">
         <p className="explanation">{explanation}</p>
       </div>
     </div>

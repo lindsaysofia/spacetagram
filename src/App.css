@@ -25,6 +25,10 @@ nav i {
   background: linear-gradient(to bottom right, #33ccff 0%, #ff99cc 100%);
 }
 
+.results {
+  padding-left: 1em;
+}
+
 .images {
   display: flex;
   justify-content: center;
@@ -59,7 +63,7 @@ nav i {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: rgba(0, 0, 0, 0.90);
+  background-color: rgba(0, 0, 0, 0.95);
   overflow: scroll;
 }
 
