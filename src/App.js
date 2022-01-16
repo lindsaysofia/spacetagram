@@ -47,7 +47,7 @@ function App() {
         </div>
       </main>
       <footer>
-        <p>Images from <a href="https://api.nasa.gov/#browseAPI" target="_blank" rel="noreferrer">NASA's Astronomy Picture of the Day</a>, which, according to NASA, "has the popular appeal of a Justin Bieber video".</p>
+        <p>Images brought to you from <a href="https://api.nasa.gov/#browseAPI" target="_blank" rel="noreferrer">NASA's Astronomy Picture of the Day</a>, which, according to NASA, "has the popular appeal of a Justin Bieber video".</p>
         <a className="github" title="GitHub" href="https://github.com/lindsaysofia" target="_blank" rel="noreferrer"><i className="fab fa-github"></i></a>
       </footer>
     </div>

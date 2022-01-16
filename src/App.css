@@ -73,7 +73,7 @@ figure img {
   width: 100%;
   opacity: 0;
   transition: .5s ease;
-  background-color: rgba(0, 0, 0, 0.95);
+  background-color: rgba(0, 0, 0, 0.75);
   overflow: scroll;
 }
 
@@ -87,6 +87,12 @@ figure:hover .overlay {
   position: absolute;
   text-align: left;
   padding: 1em;
+  line-height: 1.6;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -97,6 +103,18 @@ figure:hover .overlay {
 .date {
   font-family: 'Bungee Hairline', 'Roboto', sans-serif;
   font-weight: bold;
+}
+
+.like {
+  align-self: flex-end;
+  font-family: 'Bungee Hairline', 'Roboto', sans-serif;
+  font-weight: bold;
+  border: none;
+  background-color: inherit;
+}
+
+.like:hover {
+  cursor: pointer;
 }
 
 footer {

@@ -13,8 +13,18 @@ function ImageTile(props) {
           <p className="explanation">{explanation}</p>
         </figcaption>
       </figure>
-      <h2 className="title">{title}</h2>
-      <p className="date">{(new Date(date)).toDateString()}</p>
+      <div className="description">
+        <button className="like" onClick={(e) => {
+            if (e.target !== this) {
+              if (e.target.textContent === '') {
+                e.target = e.target.parentNode;
+              }
+            }
+            e.target.innerHTML = e.target.textContent === ' like' ? '<i class="fas fa-heart"></i> unlike':'<i class="far fa-heart"></i> like';
+          }}><i className="far fa-heart"></i> like</button>
+        <h2 className="title">{title}</h2>
+        <p className="date">{(new Date(date)).toDateString()}</p>
+      </div>
     </div>
   );
 }
