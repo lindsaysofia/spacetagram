@@ -5,16 +5,14 @@ function ImageTile(props) {
     date,
     explanation
   } = props.image;
-  const {
-    hideExplanation,
-    unhideExplanation
-  } = props;
   return (
     <div className="ImageTile">
       <img src={url} alt={title}/>
       <h2 className="title">{title}</h2>
       <p className="date">{(new Date(date)).toDateString()}</p>
-      <p className="explanation" onMouseOver={unhideExplanation()}>{explanation}</p>
+      <div class="overlay">
+        <p className="explanation">{explanation}</p>
+      </div>
     </div>
   );
 }

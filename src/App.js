@@ -12,21 +12,13 @@ function App() {
     const response = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${config.API_KEY}&count=5`);
     const data = await response.json();
     // if only one item is returned, data is an object. If two or more items, data is an array.
-    setImages([].concat(data));
+    const imagesArray = [].concat(data);
+    setImages(imagesArray.filter((image) => image.media_type === 'image'));
   }
 
   useEffect(() => {
     getImages();
   }, []);
-
-  const unhideExplanation = (e) => {
-    console.log('enter', e);
-  };
-
-  const hideExplanation = (e) => {
-    console.log('leave', e);
-  }
-
 
   return (
     <div className="App">
@@ -39,14 +31,14 @@ function App() {
         <div className="images">
           {images.map((image, index) => {
             return (
-              <ImageTile key={index} image={image} unhideExplanation={unhideExplanation} hideExplanation={hideExplanation}/>
+              <ImageTile key={index} image={image} />
             );
           })}
         </div>
       </main>
       <footer>
         <p>Images from <a href="https://api.nasa.gov/#browseAPI" target="_blank" rel="noreferrer">NASA's Astronomy Picture of the Day</a>, which, according to NASA, "has the popular appeal of a Justin Bieber video".</p>
-        <a title="GitHub" href="https://github.com/lindsaysofia" target="_blank" rel="noreferrer"><i className="fab fa-github"></i></a>
+        <a className="github" title="GitHub" href="https://github.com/lindsaysofia" target="_blank" rel="noreferrer"><i className="fab fa-github"></i></a>
       </footer>
     </div>
   );
