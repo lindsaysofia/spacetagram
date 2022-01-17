@@ -4,7 +4,7 @@ import ImageTile from './ImageTile';
 import config from './config';
 
 function App() {
-  const today = (new Date()).toLocaleDateString('en-CA');
+  const today = new Date().toLocaleDateString('en-CA');
   //start calendar 15 days from current date
   let initialStartDate = new Date();
   initialStartDate.setDate(initialStartDate.getDate() - 15);
@@ -26,9 +26,12 @@ function App() {
 
   const handleStartDateChange = (e) => {
     const newStartDate = e.target.value;
-    if (newStartDate > initialStartDate || newStartDate < '1995-06-16') {
+    if (newStartDate > today || newStartDate < '1995-06-16') {
       return;
-    }
+    } else if (newStartDate > initialStartDate && newStartDate <= today) {
+      setDates([newStartDate, today]);
+      return;
+    }  
     let newEndDate = new Date(newStartDate);
     newEndDate.setDate(newEndDate.getDate() + 15);
     setDates([newStartDate, newEndDate.toLocaleDateString('en-CA')]);
@@ -44,6 +47,11 @@ function App() {
     e.target.innerHTML = e.target.textContent === ' like' ? '<i class="fas fa-heart"></i> unlike':'<i class="far fa-heart"></i> like';
   };
 
+  // change from 'YYYY-MM-DD' to 'MM/DD/YYYY'
+  const formatDate = (date) => {
+    return date.split('-').sort((a, b) => a.length - b.length).join('/');
+  }
+
   return (
     <div className="App">
       <nav>
@@ -51,12 +59,12 @@ function App() {
         Spacetagram
       </nav>
       <main>
-        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={dates[0]} onChange={handleStartDateChange}/> to {(new Date(dates[1])).toDateString()}*</p>
+        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={dates[0]} onChange={handleStartDateChange}/> to {formatDate(dates[1])}*</p>
         <p className="note">*<em>Image results displayed below are within 15 days after the date selected</em></p>
         <div className="images">
           {images.map((image, index) => {
             return (
-              <ImageTile key={index} image={image} toggleLike={toggleLike} />
+              <ImageTile key={index} image={image} toggleLike={toggleLike} formatDate={formatDate} />
             );
           })}
         </div>

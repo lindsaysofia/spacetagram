@@ -5,7 +5,10 @@ function ImageTile(props) {
     date,
     explanation
   } = props.image;
-  const { toggleLike } = props;
+  const { 
+    toggleLike,
+    formatDate
+  } = props;
   return (
     <a className="ImageTile" href={url} target="_blank" rel="noreferrer">
       <figure>
@@ -17,7 +20,7 @@ function ImageTile(props) {
       <div className="description">
         <button className="like" onClick={toggleLike}><i className="far fa-heart"></i> like</button>
         <h2 className="title">{title}</h2>
-        <p className="date">{(new Date(date)).toDateString()}</p>
+        <p className="date">{formatDate(date)}</p>
       </div>
     </a>
   );
