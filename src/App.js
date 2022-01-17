@@ -35,6 +35,7 @@ function App() {
   };
 
   const toggleLike = (e) => {
+    e.preventDefault();
     if (e.target !== this) {
       if (e.target.textContent === '') {
         e.target = e.target.parentNode;
@@ -50,7 +51,8 @@ function App() {
         Spacetagram
       </nav>
       <main>
-        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={dates[0]} onChange={handleStartDateChange}/> to {(new Date(dates[1])).toDateString()}</p>
+        <p className="results">Currently showing {images.length === 1 ? `${images.length} image` : `${images.length} images`} from <input type="date" value={dates[0]} onChange={handleStartDateChange}/> to {(new Date(dates[1])).toDateString()}*</p>
+        <p className="note">*<em>Image results displayed below are within 15 days after the date selected</em></p>
         <div className="images">
           {images.map((image, index) => {
             return (
@@ -61,7 +63,7 @@ function App() {
       </main>
       <footer>
         <p>Images brought to you from <a href="https://api.nasa.gov/#browseAPI" target="_blank" rel="noreferrer">NASA's Astronomy Picture of the Day</a>, which, according to NASA, "has the popular appeal of a Justin Bieber video".</p>
-        <a className="github" title="GitHub" href="https://github.com/lindsaysofia" target="_blank" rel="noreferrer"><i className="fab fa-github"></i></a>
+        <p>Made with <i className="fas fa-heart"></i> by <a href="https://lindsaysofia.github.io/personal-website/" target="_blank" rel="noreferrer">Lindsay Lopez</a></p>
       </footer>
     </div>
   );

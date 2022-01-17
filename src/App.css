@@ -29,7 +29,8 @@ nav i {
   background: linear-gradient(to bottom right, #33ccff 0%, #ff99cc 100%);
 }
 
-.results {
+.results,
+.note {
   padding-left: 1em;
 }
 
@@ -48,6 +49,7 @@ nav i {
   text-align: center;
   height: fit-content;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 .ImageTile:hover {
@@ -128,10 +130,6 @@ footer {
   justify-content: center;
   align-items: center;
   margin-top: auto;
-}
-
-.github {
-  font-size: 2em;
 }
 
 a {

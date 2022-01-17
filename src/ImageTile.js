@@ -7,7 +7,7 @@ function ImageTile(props) {
   } = props.image;
   const { toggleLike } = props;
   return (
-    <div className="ImageTile">
+    <a className="ImageTile" href={url} target="_blank" rel="noreferrer">
       <figure>
         <img src={url} alt={title}/>
         <figcaption className="overlay">
@@ -19,7 +19,7 @@ function ImageTile(props) {
         <h2 className="title">{title}</h2>
         <p className="date">{(new Date(date)).toDateString()}</p>
       </div>
-    </div>
+    </a>
   );
 }
 
